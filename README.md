@@ -1,5 +1,5 @@
-# imgToAscii
-imgToAscii is a CLI tool that helps you view images in your terminal window by converting them into ASCII art representations without relying on any external applications.
+# *imgToAscii*
+*imgToAscii* is a CLI tool that helps you view images in your terminal window by converting them into ASCII art representations without relying on any external applications.
 
 ## Features
 - Converts images into text-based ASCII art
