@@ -18,12 +18,12 @@ void rgb(char text, int r, int g, int b, int br = -1, int bg = -1, int bb = -1)
   cout << text << "\033[0m";
 }
 
-char asciiChars[] = "@%#*+=-:."; // characters from dense to sparse
+const char asciiChars[] = "@%#*+=-:."; // characters from dense to sparse
 
 int main(int argc, char **argv)
 {
   // Argument 1: new height
-  // Argument 2: mode (ascii/rgb)
+  // Argument 2: mode (-ascii / -rgb)
   // Argument 3: image path
 
   std::ios::sync_with_stdio(false);
@@ -31,23 +31,36 @@ int main(int argc, char **argv)
 
   if (argc != 4)
   {
-    cout << "Usage: ./imgInTerminal <new height> <mode(-ascii/-rgb)> <image path>\n";
+    cout << "\033[1;38;2;255;70;70m"
+         << "Usage:\n"
+         << "\033[0m"
+         << "Arguments:  <height> <mode> <image>\n"
+         << "e.g., ./imgToAscii 40 -ascii public/sample.jpg\n\n"
+         << "Arguments Description:\n"
+         << "  <height>   Output ASCII height\n"
+         << "  <mode>     `-ascii` | `-rgb`\n"
+         << "  <image>    Input image path (absolute / relative)\n";
+
     return 1;
   }
 
-  int newHeight = atoi(argv[1]);  
+  int newHeight = atoi(argv[1]);
   char *mode = argv[2];
   char *imagePath = argv[3];
-  
+
   int width, height, channels;
-  unsigned char *img = stbi_load(imagePath, &width, &height, &channels, 4);
-  
+  unsigned char *img = stbi_load(imagePath, &width, &height, &channels, 3);
+  channels = 3;
+
   if (img == nullptr)
   {
-    cout << "Failed to load image\n";
+    cout << "\033[1;38;2;255;70;70m"
+         << "Failed to load image\n"
+         << "Try again with path in double quotes \"\""
+         << "\033[0m";
     return 1;
   }
-  
+
   int newWidth = width * newHeight / height * 2; // Default height to width ratio for terminal characters is 2:1
   bool isAscii = (strcmp(mode, "-ascii") == 0);
   bool isRgb = (strcmp(mode, "-rgb") == 0);
@@ -62,14 +75,14 @@ int main(int argc, char **argv)
   {
     for (int y = 0; y < newWidth; y++)
     {
-      int index = (x * height / newHeight * width + y * width / newWidth) * 4;
+      int index = ((x * height / newHeight) * width + (y * width / newWidth)) * channels;
 
       int r = img[index + 0];
       int g = img[index + 1];
       int b = img[index + 2];
       if (isAscii)
       {
-        int gray = 0.299 * r + 0.587 * g + 0.114 * b;
+        int gray = (299 * r + 587 * g + 114 * b) / 1000;
         int charIndex = gray * sizeof(asciiChars) / 256;
         cout << asciiChars[charIndex];
       }

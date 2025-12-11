@@ -33,11 +33,23 @@ g++ imgToAscii.cpp -o imgToAscii -O2 -Wall
 ```
 
 ### Alternative: Download the prebuilt executable
-If you want to try the tool without building:
 
 1. Go to **Releases**
-2. Download `imgToAscii.exe`
-3. Run it from PowerShell or Command Prompt.
+2. Download the suitable executable for your OS:
+    - **Windows**: `imgToAscii-windows.exe`
+    - **Linux**: `imgToAscii-linux`
+3. Place the executable in your desired directory, and rename it to `imgToAscii` and give it execute permissions if necessary.
+
+You can also use the following commands to download directly:
+- **Windows**:
+  ```bash
+  wget "https://github.com/Jais-Shreyas/imgToAscii/releases/download/v1.0.0/imgToAscii-windows.exe" -O imgToAscii.exe
+  ```
+- **Linux**:
+  ```bash
+  wget "https://github.com/Jais-Shreyas/imgToAscii/releases/download/v1.0.0/imgToAscii-linux" -O imgToAscii
+  chmod +x imgToAscii
+  ```
 
 ## Usage
 
@@ -54,27 +66,34 @@ If you want to try the tool without building:
 | `<image_path>`  | Path to the input image (relative or absolute).                              |
 
 ## Examples
+### Source Image
+<img src="public/sample.jpg" />
 
 ### Grayscale ASCII
 ```bash
 ./imgToAscii 40 -ascii public/sample.jpg
 ```
-<img src="public/SampleAscii40.png" width="600"/>
+<img src="public/SampleAscii40.png" />
+<hr>
 
 ### Colored ASCII (RGB)
 ```bash
 ./imgToAscii 40 -rgb public/sample.jpg
 ```
-<img src="public/SampleRGB40.png" width="600"/>
+<img src="public/SampleRGB40.png" />
+<hr>
 
 ### High-resolution ASCII (for zoomed-out terminals)
 ```bash
 ./imgToAscii 400 -ascii public/sample.jpg
 ```
-<img src="public/SampleAscii400.png" width="600"/>
+<img src="public/SampleAscii400.png" />
+<hr>
 
 ### High-resolution RGB
 ```bash
 ./imgToAscii 400 -rgb public/sample.jpg
 ```
-<img src="public/SampleRGB400.png" width="600"/>
+<img src="public/SampleRGB400.png" />
+
+<hr>
