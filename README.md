@@ -53,7 +53,7 @@ You can also use the following commands to **download the executable directly an
 
 ```powershell
 # Download
-wget "https://github.com/Jais-Shreyas/imgToAscii/releases/download/v1.0.0/imgToAscii-windows.exe" -O imgToAscii.exe
+wget "https://github.com/Jais-Shreyas/imgToAscii/releases/download/v1.1.0/imgToAscii-windows.exe" -O imgToAscii.exe
 
 # Create a bin directory (if it doesn't exist)
 $bin = "$env:USERPROFILE\bin"
@@ -75,7 +75,7 @@ if ($current -notlike "*$bin*") {
 Write-Host "Installed imgToAscii. Restart the terminal to use it from anywhere."
 ```
 
-🔁 **Restart the terminal** after this.
+**Restart the terminal** after this.
 
 Run from anywhere:
 
@@ -89,7 +89,7 @@ imgToAscii --help
 
 ```bash
 # Download
-wget "https://github.com/Jais-Shreyas/imgToAscii/releases/download/v1.0.0/imgToAscii-linux" -O imgToAscii
+curl -L "https://github.com/Jais-Shreyas/imgToAscii/releases/download/v1.1.0/imgToAscii-linux" -o imgToAscii
 
 # Make executable
 chmod +x imgToAscii
